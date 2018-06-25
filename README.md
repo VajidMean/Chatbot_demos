@@ -4,14 +4,11 @@ chatbot demos
 ~ then after setup webhook(insert ngrokURL and token writen in index.js )
 
 -------------------------------------------------------------------------------------------
-This project is for demonstration how to send back random name at new message from user
-ex.
-    user say : Hi
-        messenger says : vajid khokhar
-    user say : Hi
-        messenger says : john doe
-    And so on....
-
+After new commit project will help us to tell a joke at a time when user's intent is "sendJoke"
+i implement wit.ai nlp for getting user intents if it is "sendJoke" then bot will send joke 
+~ wit.ai nlp use
+~ for joke i use 'icanhazdadjoke.com' api which is free and easy to use.
+~ if intent is not "sendJoke" then bot will send random name.
 
 
 
