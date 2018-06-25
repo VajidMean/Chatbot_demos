@@ -8,7 +8,7 @@ const app = Restify.createServer({
 })
 
 const token = 'abcd123'
-const bot = new methods('EAADBZCz5ZBS0MBAF3hd7wt2TV8OXSvRuvohZCbTVvwPPWFWVsF6xZCh2LDk6wT6a9KjJ4pYc7SS41i7Ag4oySJpD4RraHcEEaTIAS84nlJHZCjyw2pPWqAAyQqUwtDAR6y0Q3ZCVDIpVor8Y4MVYavP8gtVICsxeqHgcNCnLpxZCUQHZAHElZBseW')
+const bot = new methods('PAGE_TOKEN')
 
 app.use(Restify.plugins.jsonp())
 app.use(Restify.plugins.bodyParser())
