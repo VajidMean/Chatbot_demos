@@ -26,11 +26,25 @@ app.post('/',(req, res, next) => {
     if(response.object === "page"){
         const messageObj = bot.getMessageObject(response)
         // bot.sendText(`You said :${messageObj.message}`,messageObj.id) 
-        request('https://randomname.de/', function (error, response, body) {
-
-        console.log('body:', body);
-        bot.sendText(body,messageObj.id) 
-      });
+        if(messageObj.intent === "sendJoke"){
+            request({
+                headers: {
+                  Accept: 'application/json' // FOR GETTING RESULT IN FORM OF JSON !!
+                },
+                uri: 'https://icanhazdadjoke.com/',
+                method: 'GET'
+              }, function (err, res, body) {
+                const apiBody = JSON.parse(body);
+                // console.log(apiBody['joke']);
+                bot.sendText(apiBody['joke'],messageObj.id) 
+              });    
+        }else{
+            request('https://randomname.de/', function (error, response, body) {
+                console.log('body:', body);
+                bot.sendText(body,messageObj.id) 
+            });    
+        }
+        
     }
     res.send(200)
 })
