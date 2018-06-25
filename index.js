@@ -8,7 +8,7 @@ const app = Restify.createServer({
 })
 
 const token = 'abcd123'
-const bot = new methods('PAGE_TOKEN')
+const bot = new methods('FB PAGE_TOKEN FROM WIT/DIALOGUE FLOW')
 
 app.use(Restify.plugins.jsonp())
 app.use(Restify.plugins.bodyParser())
