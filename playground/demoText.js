@@ -39,3 +39,28 @@ const getjoke = ()=>{
 }
 
 getjoke();
+
+
+
+
+// if (json.entry[0].messaging[0].message.nlp.entities != null) {
+//   if (json.entry[0].messaging[0].message.nlp.entities.intent != null && json.entry[0].messaging[0].message.nlp.entities.intent[0].value != null) {
+//       if (json.entry[0].messaging[0].message.nlp.entities.intent[0].value === "sendJoke") {
+//           intent = json.entry[0].messaging[0].message.nlp.entities.intent[0].value
+//           confidence = json.entry[0].messaging[0].message.nlp.entities.intent[0].confidence
+//       } else {
+//           intent = "comes into user defined but not described in wit.ai"
+//           console.log(intent);
+//       }
+//   } else {
+//       if (json.entry[0].messaging[0].message.nlp.entities.greetings != null && json.entry[0].messaging[0].message.nlp.entities.greetings[0].value === "true") {
+//           intent = "greetings"
+//           confidence = json.entry[0].messaging[0].message.nlp.entities.greetings[0].confidence
+//       } else {
+//           intent = "not defined"
+//           console.log(intent);
+//       }
+//   }
+// } else {
+//   intent = "Not Clear | intent not defined for this entry!"
+// }

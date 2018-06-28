@@ -1,14 +1,13 @@
 const Restify = require('restify')
 const methods = require('./methods')
 const request = require('request')
-
-
+ 
 const app = Restify.createServer({
     name:'Resume chatbot'
 })
 
 const token = 'abcd123'
-const bot = new methods('FB PAGE_TOKEN FROM WIT/DIALOGUE FLOW')
+const bot = new methods('EAADBZCz5ZBS0MBAH1eewAgCN5MjBXzqSHRFq44ZBH5uuJ6QpSfJLZCJ7hgIV91ABIRS3UQGTgdLyDhqZCiGnlz6AXwT6jMencoQ53r02qX9UyK0jJPQVZApUN4R8vD82WDGNYHcdVQGeEAdZCamlQ33gvbHPZBMtan7PPdexPVmrUuFdx3HF2jJe')
 
 app.use(Restify.plugins.jsonp())
 app.use(Restify.plugins.bodyParser())
@@ -36,18 +35,21 @@ app.post('/',(req, res, next) => {
               }, function (err, res, body) {
                 const apiBody = JSON.parse(body);
                 // console.log(apiBody['joke']);
-                bot.sendText(apiBody['joke'],messageObj.id) 
+                const joke = apiBody['joke'] + '🤪 😄';
+                bot.sendText(joke,messageObj.id) 
               });    
+        } else if(messageObj.intent === "greetings" && messageObj.confidence > 0.80){
+                const greetings = 'Hi there 🤠,\nHow can i help you 🤔';
+                bot.sendText(greetings,messageObj.id) 
         }else{
             request('https://randomname.de/', function (error, response, body) {
-                console.log('body:', body);
                 bot.sendText(body,messageObj.id) 
             });    
         }
-        
     }
     res.send(200)
 })
+
 
 app.listen(8080,()=>{
     console.log("app is running on port : 8080");
