@@ -24,10 +24,11 @@ module.exports = class methods {
 
     getMessageObject(json) {
         const message = json.entry[0].messaging[0].message.text
-        let intent = '', confidence = 0;
-        // if (json.entry[0].messaging[0].message.attachments) {    // for attachment
-        //     console.log("Hey, User attached something ! (e.g:- Audio, video, image,etc..)");
-        // } else {
+        let intent = '', intentValue = '';
+        let confidence = 0;
+        if (json.entry[0].messaging[0].message.attachments) {    // for attachment
+            console.log("Hey, User attached something ! (e.g:- Audio, video, image,etc..)");
+        } else {
         let entity_len = Object.keys(json.entry[0].messaging[0].message.nlp.entities).length;
         if (entity_len === 1) {
             console.log("Single entity !");
@@ -41,6 +42,7 @@ module.exports = class methods {
                 // console.log("heyyyyyy is here ...",Object.keys(json.entry[0].messaging[0].message.nlp.entities)[0]);
                 intent = Object.keys(json.entry[0].messaging[0].message.nlp.entities)[0]
                 confidence = json.entry[0].messaging[0].message.nlp.entities[Object.keys(json.entry[0].messaging[0].message.nlp.entities)[0]][0].confidence
+                intentValue = json.entry[0].messaging[0].message.nlp.entities[Object.keys(json.entry[0].messaging[0].message.nlp.entities)[0]][0].value
 
             }
         } else if (entity_len === 0) {
@@ -56,6 +58,7 @@ module.exports = class methods {
 
                 }
             }
+            
             function findMax(A_entity) {
                 let max = A_entity[0].confidence;
                 for (let i = 1; i < A_entity.length; i++) {
@@ -71,16 +74,17 @@ module.exports = class methods {
             });
             // console.log("Max Confidence : ",getIntent[0].intent);
             intent = getIntent[0].intent
+            // console.log("Intent value is : ",getIntent[0].value); 
+            intentValue = json.entry[0].messaging[0].message.nlp.entities[Object.keys(json.entry[0].messaging[0].message.nlp.entities)[0]][0].value;            
             if (intent === "intent") {
                 intent = json.entry[0].messaging[0].message.nlp.entities.intent[0].value
-
+                
             }
-            
         }
         console.log("final intent is : ", intent);
-        // }
+        }
         console.log("user says : ", message);
         const id = json.entry[0].messaging[0].sender.id
-        return { message, id, intent, confidence }
+        return { message, id, intent, confidence, intentValue }
     }
 }
