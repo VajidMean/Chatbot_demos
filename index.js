@@ -9,7 +9,7 @@ const app = Restify.createServer({
 })
 
 const token = 'abcd123'
-const bot = new methods('EAADBZCz5ZBS0MBAH1eewAgCN5MjBXzqSHRFq44ZBH5uuJ6QpSfJLZCJ7hgIV91ABIRS3UQGTgdLyDhqZCiGnlz6AXwT6jMencoQ53r02qX9UyK0jJPQVZApUN4R8vD82WDGNYHcdVQGeEAdZCamlQ33gvbHPZBMtan7PPdexPVmrUuFdx3HF2jJe')
+const bot = new methods('page_access token')
 
 app.use(Restify.plugins.jsonp())
 app.use(Restify.plugins.bodyParser())
